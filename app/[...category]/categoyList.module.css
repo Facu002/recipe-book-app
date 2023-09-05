@@ -1,0 +1,111 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+    color : black;
+    margin: 0 auto;
+}
+.categoryList_page__nav{
+    background-color: #f8e1df;
+    border-radius: 20px;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    min-width: 250px;
+    padding: 0.5rem 1.5rem;
+}
+.categoryList_page__nav h2{
+    margin: 0 1rem;
+}
+.categoryList_page__nav a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.categoryList_page__nav a img{
+    width: 50px;
+    height: 50px;
+}
+.categoyList_page{
+    width: 95vw;
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    background-color: #f8e1df;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 1rem ;
+}
+.category_list_container h2{
+    margin: 1rem;
+    color: black;
+}
+.categoyList_page_grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(50%, auto));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    max-width: 95%;
+    width: var(--max-width);
+}
+
+.category_box{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.479);
+    border: 0.5px solid rgba(0, 0, 0, 0.678);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.category_box img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border-end-end-radius: 0;
+    border-end-start-radius: 0;
+    background-color: rgb(255, 216, 216);
+
+}
+.box_text_container{
+    position: relative;
+    width: 100%;
+}
+.box_text_container h4{
+    margin: 10px 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 5px;
+    
+}
+.favBtn{
+    /* background-color: rgba(44, 44, 44, 0.479); */
+    background-color: rgba(255, 191, 191, 0.897);
+    position: absolute;
+    top: -35%;
+    right: 0;
+    z-index: 2;
+    cursor: default;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 2px;
+    background-color: #978B8A;
+}
+.favBtn svg{
+    padding: 0;
+    margin: 0;
+}
