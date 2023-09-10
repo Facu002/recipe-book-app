@@ -50,10 +50,12 @@ export default async function page({params}:any) {
                 <div className={styles.selectedRecipe_page}>
                 
                     <div className={styles.selectedRecipe_box} key={recipeList[0].idMeal}>
+                        <div className={styles.recipeInformation}>
 
-                        <Image width={100} height={100} src={recipeList[0].strMealThumb} alt="categoy-box" />
-
-                        <h4>{recipeList[0].strMeal}</h4>
+                        <div className={styles.recipeTitle}>
+                            <Image width={100} height={100} src={recipeList[0].strMealThumb} alt="categoy-box" />
+                            <h4>{recipeList[0].strMeal}</h4>
+                        </div>
 
                         <div className={styles.ingredients_container}>
                             <h3>Ingredients</h3>
@@ -66,6 +68,8 @@ export default async function page({params}:any) {
                                 return null;
                             })}
                             </ul>
+                        </div>
+
                         </div>
 
                         <div className={styles.instruction_container}>
