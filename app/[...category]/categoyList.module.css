@@ -95,7 +95,6 @@
     position: absolute;
     top: -35%;
     right: 0;
-    z-index: 2;
     cursor: default;
     width: fit-content;
     display: flex;
@@ -104,8 +103,99 @@
     padding: 5px;
     border-radius: 2px;
     background-color: #978B8A;
+    cursor: pointer;
 }
 .favBtn svg{
     padding: 0;
     margin: 0;
+}
+
+
+.selectedRecipe_page{
+    width: 95vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F8E1DF;
+    border-radius: 20px;
+    margin: 0 auto;
+    /* padding: 1rem ; */
+    /* background-color: rgb(228, 184, 159); */
+}
+
+.selectedRecipe_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    /* min-height: 90vh; */
+    height: 100%;
+    width: 95vw;
+    max-width: 500px;
+
+}
+.selectedRecipe_box img{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 20px;
+
+}
+.selectedRecipe_box .ingredients_container{
+    width: 100%;
+    /* max-width: 400px; */
+    list-style: none;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 0 auto;
+
+}
+.ingredients_container ul{
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    text-align: start;
+    margin: 1rem auto;
+    width: 80vw;
+    max-width: 500px;
+    padding: 1rem;
+    background-color: #ffcdc9;
+    border-radius: 20px;
+    align-content: center;
+    border: 0.5px solid rgba(0, 0, 0, 0.678);
+
+}
+.ingredients_container ul li{
+    list-style: none;
+    margin: 5px;
+    width: 90%;
+    background-color: #f8e1df;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.selectedRecipe_box .instruction_container{
+    width: 95%;
+    /* max-width: 400px; */
+    list-style: none;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 0 auto 1rem auto;
+    border: 0.5px solid rgba(0, 0, 0, 0.678);
+    background-color: #ffcdc9;
+
+}
+.selectedRecipe_box .instruction_container p{
+    font-size: small;
+    text-align: start;
+    margin: 10px 5px;
+    padding: 10px;
+    background-color: #f8e1df;
+    border-radius: 5px;
+
 }
