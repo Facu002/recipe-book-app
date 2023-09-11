@@ -29,10 +29,10 @@ async function getRecipeData(props:string) {
 export default async function page({params}:any) {
     const selectedRecipe = params.category[1]
     const RecipeData = await getRecipeData(selectedRecipe)
-    let recipeList = RecipeData.meals
+    const recipeList = RecipeData.meals
 
     const data = await getCategoryData(params.category[0])
-    let dataList = data.meals
+    const dataList = data.meals
     
 
     return(
@@ -118,4 +118,4 @@ export default async function page({params}:any) {
         </>
 
     )
-};
+}

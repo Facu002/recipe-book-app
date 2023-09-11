@@ -14,9 +14,9 @@ async function getData() {
     return res.json()
 }
 
-export default async function FoodTypeContainer(props:any) {
+export default async function FoodTypeContainer() {
     const data = await getData()
-    let dataList = data.categories
+    const dataList = data.categories
     // console.log(data.categories);
     return(
         <div className={styles.category_list_container}>
@@ -32,4 +32,4 @@ export default async function FoodTypeContainer(props:any) {
             </div>
         </div>
     )
-};
+}
