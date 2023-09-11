@@ -9,7 +9,7 @@
     margin: 0 auto;
 }
 .categoryList_page__nav{
-    background-color: #f8e1df;
+    background-color: #f8d9b1;
     border-radius: 20px;
     margin: 1rem auto;
     display: flex;
@@ -37,7 +37,7 @@
     flex-direction: column; 
     align-items: center;
     justify-content: center;
-    background-color: #f8e1df;
+    background-color: #f8d9b1;
     border-radius: 20px;
     margin: 0 auto;
     padding: 1rem ;
@@ -62,11 +62,12 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 20px;
-    background-color: rgba(44, 44, 44, 0.479);
-    border: 0.5px solid rgba(0, 0, 0, 0.678);
+    /* background-color: rgba(44, 44, 44, 0.479); */
     text-align: center;
     position: relative;
     z-index: 1;
+    background-color: #684a3c;
+
 }
 .category_box img{
     width: 100%;
@@ -74,7 +75,6 @@
     border-radius: 20px;
     border-end-end-radius: 0;
     border-end-start-radius: 0;
-    background-color: rgb(255, 216, 216);
 
 }
 .box_text_container{
@@ -91,7 +91,6 @@
 }
 .favBtn{
     /* background-color: rgba(44, 44, 44, 0.479); */
-    background-color: rgba(255, 191, 191, 0.897);
     position: absolute;
     top: -35%;
     right: 0;
@@ -104,6 +103,8 @@
     border-radius: 2px;
     background-color: #978B8A;
     cursor: pointer;
+    background-color: #684a3c;
+
 }
 .favBtn svg{
     padding: 0;
@@ -118,7 +119,7 @@
     flex-direction: column; 
     align-items: center;
     justify-content: space-between;
-    background-color: #F8E1DF;
+    background-color: #f8d9b1;
     border-radius: 20px;
     margin: 0 auto;
     /* background-color: rgb(228, 184, 159); */
@@ -147,34 +148,36 @@
 
 }
 .selectedRecipe_box .ingredients_container{
-    width: 100%;
+    width: 90%;
     /* max-width: 400px; */
     list-style: none;
     border-radius: 20px;
     padding: 1rem;
-    margin: 0 auto;
-
+    margin: 1rem auto;
+    background-color: #684A3C;
+    color: #f8d9b1;
 }
+
 .ingredients_container ul{
     display: grid;
     grid-template-columns: repeat(2, 0.5fr);
     text-align: start;
-    margin: 1rem auto;
-    
-    padding: 1rem;
-    background-color: #ffcdc9;
+    margin: 0.5rem auto;
+    color: #000;
+    padding: 0.5rem;
+    background-color: #684A3C;
     border-radius: 20px;
     align-content: center;
-    border: 0.5px solid rgba(0, 0, 0, 0.678);
 
 }
 .ingredients_container ul li{
     list-style: none;
     margin: 5px;
     width: 90%;
-    background-color: #f8e1df;
+    background-color: #fff8e2;
     text-align: center;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .selectedRecipe_box .instruction_container{
@@ -184,18 +187,17 @@
     border-radius: 20px;
     padding: 1rem;
     margin: 0 auto 1rem auto;
-    border: 0.5px solid rgba(0, 0, 0, 0.678);
-    background-color: #ffcdc9;
-
+    background-color: #684A3C;
+    color: #fff8e2;
 }
 .selectedRecipe_box .instruction_container p{
     font-size: small;
     text-align: start;
     margin: 10px 5px;
     padding: 10px;
-    background-color: #f8e1df;
+    background-color: #fff8e2;
     border-radius: 5px;
-
+    color: #000;
 }
 .selectedRecipe_box .recipeInformation{
     width: 100%;
@@ -205,7 +207,12 @@
 }
 .recipeTitle{
     width: auto;
+    color: #684A3C;
     
+}
+.recipeTitle h4{
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 @media (min-width:850px) {
@@ -226,13 +233,13 @@
         flex-direction: column;
         /* justify-content: space-between; */
         /* height: 100%; */
-        border: 0.5px solid rgba(0, 0, 0, 0.678);
-        border-radius: 20px;
+            border-radius: 20px;
         padding: 1rem;
-        background-color: #ffcdc9;
-
+        background-color: #684A3C;
+        color: #fff8e2;
     }
     .recipeTitle h4{
         padding: 1rem;
+
     }
 }

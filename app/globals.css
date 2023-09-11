@@ -22,6 +22,12 @@
     rgba(255, 255, 255, 0)
   ); */
 
+  --white-tone: #fff8e2;
+  --primary-tone: #4a6d7c;
+  --secondary-tone:#699a90;
+
+
+
   --tile-start-rgb: 239, 245, 249;
   --tile-end-rgb: 228, 232, 233;
   --tile-border: conic-gradient(
@@ -88,7 +94,7 @@ body {
 body {
   /* color: rgb(var(--foreground-rgb)); */
   color: black;
-  background-color: #ffeeed;
+  background-color: #FFF8E3;
 }
 
 a {
