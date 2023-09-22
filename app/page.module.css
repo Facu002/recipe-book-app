@@ -65,7 +65,7 @@
   justify-content: center;
   background-color: #F8D9B1;
   border-radius: 20px;
-
+  padding: 1rem 0 2rem 0;
 }
 .category_list_container h2{
   margin: 1rem;

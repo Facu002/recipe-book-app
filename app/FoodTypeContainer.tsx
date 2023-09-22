@@ -20,11 +20,11 @@ export default async function FoodTypeContainer() {
     // console.log(data.categories);
     return(
         <div className={styles.category_list_container}>
-            <h2>CATEGORIAS</h2>
+            <h2>Categories</h2>
             <div className={styles.category_list_grid}>
                 
                 {dataList.map((category:any) => (
-                    <Link href={`/${category.strCategory}`} className={styles.category_box} key={category}>
+                    <Link href={`/${category.strCategory}`} className={styles.category_box} key={category.strCategoryThumb}>
                         <Image width={100} height={100} src={category.strCategoryThumb} alt="categoy-box" />
                         <h4>{category.strCategory}</h4>
                     </Link>

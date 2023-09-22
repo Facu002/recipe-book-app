@@ -104,7 +104,7 @@
     background-color: #978B8A;
     cursor: pointer;
     background-color: #684a3c;
-
+    z-index: 5;
 }
 .favBtn svg{
     padding: 0;

@@ -1,7 +1,11 @@
+'use client'
 import Image from 'next/image'
 import styles from './categoyList.module.css'
 import LogoImg from '../../public/RecipeE-Book-Logo.png'
 import Link from 'next/link'
+import { app } from '../firebase/firebaseConfing'
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getDatabase, ref, push } from 'firebase/database';
 async function getCategoryData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${props}`)
     // The return value is *not* serialized
@@ -30,11 +34,23 @@ export default async function page({params}:any) {
     const selectedRecipe = params.category[1]
     const RecipeData = await getRecipeData(selectedRecipe)
     const recipeList = RecipeData.meals
-
+    
     const data = await getCategoryData(params.category[0])
     const dataList = data.meals
     
+    const db = getFirestore(app);
 
+
+    function addToFavorites(food:any) {
+        const favoriteFoodsCollection = collection(db, 'favoriteFoods');
+        addDoc(favoriteFoodsCollection, food)
+            .then(docRef => {
+            console.log('Document written with ID: ', docRef.id);
+            })
+            .catch(error => {
+            console.error('Error adding document: ', error);
+            });
+    }
     return(
         <>
         {
@@ -46,7 +62,9 @@ export default async function page({params}:any) {
                 </Link>
                 <h2>{recipeList[0].strMeal} Recipe</h2>
                 </div>
-
+                {
+                    // addToFavorites(recipeList[0])
+                }
                 <div className={styles.selectedRecipe_page}>
                 
                     <div className={styles.selectedRecipe_box} key={recipeList[0].idMeal}>
@@ -62,8 +80,9 @@ export default async function page({params}:any) {
                             <ul>
                             {Array.from({ length: 20 }, (_, index) => {
                                 const ingredient = recipeList[0][`strIngredient${index + 1}`];
+                                const qnt = recipeList[0][`strMeasure${index + 1}`]
                                 if (ingredient) {
-                                    return <li key={index}>{ingredient}</li>;
+                                    return <li key={index}>{ingredient} - {qnt}</li>;
                                 }
                                 return null;
                             })}
@@ -101,7 +120,7 @@ export default async function page({params}:any) {
                             <div className={styles.box_text_container}>
                                 <h4>{food.strMeal}</h4>
                                 
-                                <div className={styles.favBtn}>
+                                <div className={styles.favBtn} onClick={() => addToFavorites(recipeList[0])}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff8e2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
