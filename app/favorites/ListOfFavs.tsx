@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 export default function RenderList(props:any) {
-    let elements = props.props;
+    const elements = props.props;
     console.log(elements);
 
     return(
