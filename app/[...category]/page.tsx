@@ -31,6 +31,8 @@ async function getRecipeData(props:string) {
 
 export default async function page({params}:any) {
     const selectedRecipe = params.category[1]
+    console.log(selectedRecipe)
+
     const RecipeData = await getRecipeData(selectedRecipe)
     const recipeList = RecipeData.meals
     
@@ -41,6 +43,8 @@ export default async function page({params}:any) {
 
 
     function addToFavorites(food:any) {
+        console.log(dataList);
+        
         const favoriteFoodsCollection = collection(db, 'favoriteFoods');
         addDoc(favoriteFoodsCollection, food)
             .then(docRef => {
@@ -54,12 +58,16 @@ export default async function page({params}:any) {
         <>
         {
             selectedRecipe ? 
+            
             <>
                 <div className={styles.categoryList_page__nav}>
-                <Link href={'./'}>
-                    <Image alt='LogoImg' width={100} height={100} src={LogoImg}></Image>
-                </Link>
-                <h2>{recipeList[0].strMeal} Recipe</h2>
+                    <Link href={'../'}>
+                        <Image alt='LogoImg' width={100} height={100} src={LogoImg}></Image>
+                    </Link>
+                    {/* <h2>{recipeList[0].strMeal} Recipe</h2> */}
+
+                    <Link href={'../favorites'} className={styles.toFavorites}>Favorites</Link>
+
                 </div>
                 {
                     // addToFavorites(recipeList[0])
@@ -71,9 +79,16 @@ export default async function page({params}:any) {
 
                         <div className={styles.recipeTitle}>
                             <Image width={100} height={100} src={recipeList[0].strMealThumb} alt="categoy-box" />
-                            <h4>{recipeList[0].strMeal}</h4>
-                        </div>
 
+                            <h4>{recipeList[0].strMeal}</h4>
+
+                            <div className={styles.favBtn} onClick={() => addToFavorites(recipeList[0])}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="25" height="25" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                                        </svg>
+                            </div>
+                        </div>
                         <div className={styles.ingredients_container}>
                             <h3>Ingredients</h3>
                             <ul>
@@ -118,13 +133,12 @@ export default async function page({params}:any) {
                             <Image width={100} height={100} src={food.strMealThumb} alt="categoy-box" />
                             <div className={styles.box_text_container}>
                                 <h4>{food.strMeal}</h4>
-                                
-                                <div className={styles.favBtn} onClick={() => addToFavorites(recipeList[0])}>
+                                {/* <div className={styles.favBtn} onClick={() => addToFavorites(food)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff8e2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                                     </svg>
-                                </div>
+                                </div> */}
                             </div>
                         </Link>
                     ))}

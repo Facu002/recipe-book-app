@@ -1,0 +1,86 @@
+.favorites_page_container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: a; */
+    align-items: center;
+    /* padding: 6rem; */
+    /* min-height: 100vh; */
+    color : black;
+    margin: 0 auto;
+}
+.categoryList_page__nav{
+    background-color: #f8d9b1;
+    border-radius: 20px;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    min-width: 250px;
+    max-width: 800px;
+
+    padding: 0.5rem 1.5rem;
+}
+.categoryList_page__nav h2{
+    margin: 0 1rem;
+}
+.categoryList_page__nav a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.categoryList_page__nav a img{
+    width: 50px;
+    height: 50px;
+}
+
+
+.ListOfFavs_container{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(50%, auto));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+    gap: 10px;
+    max-width: 95%;
+    width: var(--max-width);
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 95vw;
+    max-width: 800px;
+    height: auto;
+    
+    background-color: #f8d9b1;
+    border-radius: 20px;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+.FavoriteRecipe_container{
+    background-color: #fff8e381;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px 0;
+}
+.FavoriteRecipe_container a{
+    width: fit-content;
+    min-width: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.FavoriteRecipe_container a img{
+    border-radius: 10px;
+}
+.FavoriteRecipe_container a h4{
+    width: 100%;
+    margin: 10px auto 0 auto;
+    font-size: 0.8rem;
+    
+}
