@@ -64,6 +64,27 @@
     align-items: center;
     border-radius: 20px;
     padding: 20px 0;
+    position: relative;
+}
+.FavoriteRecipe_container button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 11, 11, 0.534);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    cursor: pointer;
+}
+.FavoriteRecipe_container button:hover{
+    background-color: rgba(255, 0, 0, 0.781);
+}
+.FavoriteRecipe_container button:active{
+    background-color: rgba(255, 0, 0, 0.781);
 }
 .FavoriteRecipe_container a{
     width: fit-content;

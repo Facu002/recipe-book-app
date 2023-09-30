@@ -4,7 +4,7 @@ import styles from './categoyList.module.css'
 import LogoImg from '../../public/RecipeE-Book-Logo.png'
 import Link from 'next/link'
 import { app } from '../firebase/firebaseConfing'
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc,setDoc, doc } from 'firebase/firestore';
 async function getCategoryData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${props}`)
     // The return value is *not* serialized
@@ -31,7 +31,6 @@ async function getRecipeData(props:string) {
 
 export default async function page({params}:any) {
     const selectedRecipe = params.category[1]
-    console.log(selectedRecipe)
 
     const RecipeData = await getRecipeData(selectedRecipe)
     const recipeList = RecipeData.meals
@@ -42,17 +41,17 @@ export default async function page({params}:any) {
     const db = getFirestore(app);
 
 
-    function addToFavorites(food:any) {
-        console.log(dataList);
+    function addToFavorites(food:any, id:any) {
         
         const favoriteFoodsCollection = collection(db, 'favoriteFoods');
-        addDoc(favoriteFoodsCollection, food)
-            .then(docRef => {
-            console.log('Document written with ID: ', docRef.id);
-            })
-            .catch(error => {
-            console.error('Error adding document: ', error);
-            });
+        // addDoc(favoriteFoodsCollection, food)
+        //     .then(docRef => {
+        //     console.log('Document written with ID: ', docRef.id);
+        //     })
+        //     .catch(error => {
+        //     console.error('Error adding document: ', error);
+        //     });
+            setDoc(doc(db, "favoriteFoods", `${id}`), food);
     }
     return(
         <>
@@ -82,7 +81,7 @@ export default async function page({params}:any) {
 
                             <h4>{recipeList[0].strMeal}</h4>
 
-                            <div className={styles.favBtn} onClick={() => addToFavorites(recipeList[0])}>
+                            <div className={styles.favBtn} onClick={() => addToFavorites(recipeList[0], recipeList[0].idMeal)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="25" height="25" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
