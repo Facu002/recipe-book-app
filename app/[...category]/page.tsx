@@ -39,7 +39,7 @@ export default async function page({params}:any) {
 
     function addToFavorites(food:any, id:any) {
         
-        const favoriteFoodsCollection = collection(db, 'favoriteFoods');
+        // const favoriteFoodsCollection = collection(db, 'favoriteFoods');
 
         setDoc(doc(db, "favoriteFoods", `${id}`), food);
     }
