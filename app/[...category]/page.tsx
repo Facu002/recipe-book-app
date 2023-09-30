@@ -4,13 +4,11 @@ import styles from './categoyList.module.css'
 import LogoImg from '../../public/RecipeE-Book-Logo.png'
 import Link from 'next/link'
 import { app } from '../firebase/firebaseConfing'
-import { getFirestore, collection, addDoc,setDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection,setDoc, doc } from 'firebase/firestore';
 async function getCategoryData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${props}`)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
+    
     if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
     }
     return res.json()
@@ -18,10 +16,8 @@ async function getCategoryData(props:string) {
 
 async function getRecipeData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${props}`)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
+    
     if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
     }
     return res.json()
@@ -44,14 +40,8 @@ export default async function page({params}:any) {
     function addToFavorites(food:any, id:any) {
         
         const favoriteFoodsCollection = collection(db, 'favoriteFoods');
-        // addDoc(favoriteFoodsCollection, food)
-        //     .then(docRef => {
-        //     console.log('Document written with ID: ', docRef.id);
-        //     })
-        //     .catch(error => {
-        //     console.error('Error adding document: ', error);
-        //     });
-            setDoc(doc(db, "favoriteFoods", `${id}`), food);
+
+        setDoc(doc(db, "favoriteFoods", `${id}`), food);
     }
     return(
         <>
