@@ -4,7 +4,7 @@ import styles from './categoyList.module.css'
 import LogoImg from '../../public/RecipeE-Book-Logo.png'
 import Link from 'next/link'
 import { app } from '../firebase/firebaseConfing'
-import { getFirestore, collection,setDoc, doc } from 'firebase/firestore';
+import { getFirestore,setDoc, doc } from 'firebase/firestore';
 async function getCategoryData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${props}`)
     
