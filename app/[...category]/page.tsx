@@ -4,7 +4,7 @@ import styles from './categoyList.module.css'
 import LogoImg from '../../public/RecipeE-Book-Logo.png'
 import Link from 'next/link'
 import { app } from '../firebase/firebaseConfing'
-import { getFirestore,setDoc, doc } from 'firebase/firestore';
+import { getFirestore, getDoc, setDoc, doc } from 'firebase/firestore';
 async function getCategoryData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${props}`)
     
@@ -37,11 +37,20 @@ export default async function page({params}:any) {
     const db = getFirestore(app);
 
 
-    function addToFavorites(food:any, id:any) {
+    async function addToFavorites(food:any, id:any) {
         
-        // const favoriteFoodsCollection = collection(db, 'favoriteFoods');
+        // setDoc(doc(db, "favoriteFoods", `${id}`), food);
+        const docRef = doc(db, "favoriteFoods", `${id}`);
+    
+        const docSnap = await getDoc(docRef);
 
-        setDoc(doc(db, "favoriteFoods", `${id}`), food);
+            if (docSnap.exists()) {
+                alert('This item is already in your favorites!');
+            } else {
+                await setDoc(docRef, food);
+                alert('This item has been added to your favorites!');
+
+            }
     }
     return(
         <>
@@ -53,14 +62,10 @@ export default async function page({params}:any) {
                     <Link href={'../'}>
                         <Image alt='LogoImg' width={100} height={100} src={LogoImg}></Image>
                     </Link>
-                    {/* <h2>{recipeList[0].strMeal} Recipe</h2> */}
 
                     <Link href={'../favorites'} className={styles.toFavorites}>Favorites</Link>
-
                 </div>
-                {
-                    // addToFavorites(recipeList[0])
-                }
+
                 <div className={styles.selectedRecipe_page}>
                 
                     <div className={styles.selectedRecipe_box} key={recipeList[0].idMeal}>
@@ -72,10 +77,10 @@ export default async function page({params}:any) {
                             <h4>{recipeList[0].strMeal}</h4>
 
                             <div className={styles.favBtn} onClick={() => addToFavorites(recipeList[0], recipeList[0].idMeal)}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="25" height="25" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-                                        </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="25" height="25" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                                </svg>
                             </div>
                         </div>
                         <div className={styles.ingredients_container}>
@@ -108,31 +113,26 @@ export default async function page({params}:any) {
             :
 
             <>
-            <div className={styles.categoryList_page__nav}>
-                <Link href={'./'}>
-                    <Image alt='LogoImg' width={100} height={100} src={LogoImg}></Image>
-                </Link>
-                <h2>{params.category[0]} Recipies</h2>
-            </div>
-            <div className={styles.categoyList_page}>
-                
-                <div className={styles.categoyList_page_grid}>
-                    {dataList.map((food:any) => (
-                        <Link href={`./${params.category[0]}/${food.idMeal}`} className={styles.category_box} key={food.idMeal}>
-                            <Image width={100} height={100} src={food.strMealThumb} alt="categoy-box" />
-                            <div className={styles.box_text_container}>
-                                <h4>{food.strMeal}</h4>
-                                {/* <div className={styles.favBtn} onClick={() => addToFavorites(food)}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff8e2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-                                    </svg>
-                                </div> */}
-                            </div>
-                        </Link>
-                    ))}
+                <div className={styles.categoryList_page__nav}>
+                    <Link href={'./'}>
+                        <Image alt='LogoImg' width={100} height={100} src={LogoImg}></Image>
+                    </Link>
+                    <h2>{params.category[0]} Recipies</h2>
                 </div>
-            </div>
+
+                <div className={styles.categoyList_page}>
+                    
+                    <div className={styles.categoyList_page_grid}>
+                        {dataList.map((food:any) => (
+                            <Link href={`./${params.category[0]}/${food.idMeal}`} className={styles.category_box} key={food.idMeal}>
+                                <Image width={100} height={100} src={food.strMealThumb} alt="categoy-box" />
+                                <div className={styles.box_text_container}>
+                                    <h4>{food.strMeal}</h4>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
             </>
 
         }

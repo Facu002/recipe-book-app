@@ -43,11 +43,11 @@ export default function Page() {
                 <div className={styles.ListOfFavs_container}>
                     {dataList.map((element) => (
                         <div className={styles.FavoriteRecipe_container} key={element.idMeal}>
-                        {/* <h3 key={index}>{element.strMeal}</h3> */}
                             <Link href={`/${element.strCategory}/${element.idMeal}`} key={element.idMeal}>
                                     <Image width={100} height={100} src={element.strMealThumb} alt="categoy-box" />
                                     <h4>{element.strMeal}</h4>
                             </Link>
+                            
                             <button onClick={()=> removeDoc(element.idMeal)}>
                                 <svg xmlns="http://www.w3.org/2000/svg"  className="icon icon-tabler icon-tabler-x" width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
