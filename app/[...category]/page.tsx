@@ -5,6 +5,10 @@ import LogoImg from '../../public/RecipeE-Book-Logo.png'
 import Link from 'next/link'
 import { app } from '../firebase/firebaseConfing'
 import { getFirestore, getDoc, setDoc, doc } from 'firebase/firestore';
+
+import swal from 'sweetalert';
+
+
 async function getCategoryData(props:string) {
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${props}`)
     
@@ -45,11 +49,13 @@ export default async function page({params}:any) {
         const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                alert('This item is already in your favorites!');
+                // swal("This item is already in your favorites!", "error");
+                swal("This item is already in your favorites!","" ,"error");
+
             } else {
                 await setDoc(docRef, food);
-                alert('This item has been added to your favorites!');
-
+                // alert('This item has been added to your favorites!');
+                swal("This item has been added to your favorites!","", "success");
             }
     }
     return(

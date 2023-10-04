@@ -227,7 +227,7 @@
     width: fit-content;
     height: fit-content;
     position: absolute;
-    bottom: 0.5rem;
+    top: 0.5rem;
     right: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -239,7 +239,6 @@
 }
 
 @media (min-width:850px) {
-    
     .selectedRecipe_box .recipeInformation{
         display: flex;
         width: 95vw;
@@ -256,28 +255,15 @@
         flex-direction: column;
         /* justify-content: space-between; */
         /* height: 100%; */
-            border-radius: 20px;
+        border-radius: 20px;
         padding: 1rem;
         background-color: #684A3C;
         color: #fff8e2;
         position: relative;
     }
+    
     .recipeTitle h4{
         padding: 1rem;
     }
-    .favBtn{
-        background-color: #f8d9b1;
-        width: fit-content;
-        height: fit-content;
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 20px;
-        padding: 5px;
-        cursor: pointer;
-    }
+    
 }
